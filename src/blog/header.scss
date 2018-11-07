@@ -1,0 +1,134 @@
+@import 'public/base';
+.header {
+  .blog-title {
+    margin: auto;
+    width: 200px;
+  }
+  .blog-title a {
+    @extend %link-a;
+  }
+  .a-muzi {
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+    line-height: 100px;
+  }
+  .a-muzi::after {
+    content: 'Home';
+    transition: 0.5s;
+    position: absolute;
+    opacity: 0;
+  }
+  .blog-title:hover .a-muzi::after {
+    content: 'Home';
+    position: absolute;
+    font-size: 13px;
+    color: red;
+    transition: 0.8s;
+    opacity: 1;
+  }
+}
+
+.header {
+  #check-menu {
+    position: absolute;
+    opacity: 0;
+  }
+  .menu {
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 95%;
+    margin: auto;
+    a {
+      @extend %link-a;
+      display: block;
+      line-height: 30px;
+      text-align: center;
+      padding: 0 10px;
+      text-align: center;
+      // &.router-link-active {
+      //   color: red;
+      // }
+      &.router-link-exact-active {
+        color: #ccc;
+      }
+    }
+    ul {
+      list-style: none;
+    }
+    li {
+      position: relative;
+      font-size: $font_size;
+      line-height: 30px;
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .header {
+    padding-bottom: 20px;
+    .menu {
+      li {
+        display: inline-block;
+      }
+      li + li::before {
+        content: '/';
+        position: absolute;
+        color: #ccc;
+        left: 0;
+        font-size: 1.5em;
+        line-height: 30px;
+      }
+      a:hover {
+        color: red;
+        transition: all 0.5s;
+      }
+      .login,
+      .reg {
+        list-style: none;
+        float: right;
+      }
+    }
+    .icon-menu {
+      position: absolute;
+      opacity: 0;
+      height: 0;
+    }
+    .icon-koala {
+      width: 2em;
+      height: 2em;
+      vertical-align: -0.3em;
+      fill: currentColor;
+      overflow: hidden;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .menu {
+    transition: 0.5s;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    font-size: $font_size;
+  }
+  .blog-title {
+    display: none;
+  }
+  .icon-menu {
+    cursor: pointer;
+    width: 2em;
+    height: 2em;
+    vertical-align: middle;
+    fill: currentColor;
+    overflow: hidden;
+    padding-left: 10px;
+  }
+  #check-menu:checked ~ .menu {
+    height: 190px;
+    transition: 0.5s;
+    opacity: 1;
+  }
+}
